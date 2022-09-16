@@ -15,7 +15,8 @@ birthday_he = os.environ['BIRTHDAY_HE']
 app_id = os.environ["APP_ID"]
 app_secret = os.environ["APP_SECRET"]
 
-user_id = os.environ["USER_ID"]
+user_id_1 = os.environ["USER_ID_1"]
+user_id_2 = os.environ["USER_ID_2"]
 template_id = os.environ["TEMPLATE_ID"]
 
 
@@ -86,7 +87,7 @@ data = {
     "color":get_random_color()
   }
 }
-res = wm.send_template(user_id[0], template_id, data)
-print(res)
-res = wm.send_template(user_id[1], template_id, data)
-print(res)
+res_1 = wm.send_template(user_id_1, template_id, data)
+print(res_1)
+res_2 = wm.send_template(user_id_2, template_id, data)
+print(res_2)
