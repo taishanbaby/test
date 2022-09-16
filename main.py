@@ -6,9 +6,6 @@ import requests
 import os
 import random
 
-#define he False
-#define she True
-
 today = datetime.now()
 start_date = os.environ['START_DATE']
 city = os.environ['CITY']
@@ -78,10 +75,10 @@ data = {
     "value":get_count()
   },
   "birthday_she":{
-    "value":get_birthday(she)
+    "value":get_birthday(True)
   },
   "birthday_he":{
-    "value":get_birthday(he)
+    "value":get_birthday(False)
   },
   "words":{
     "value":get_words(), 
