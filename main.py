@@ -6,10 +6,14 @@ import requests
 import os
 import random
 
+#define he False
+#define she True
+
 today = datetime.now()
 start_date = os.environ['START_DATE']
 city = os.environ['CITY']
-birthday = os.environ['BIRTHDAY']
+birthday_she = os.environ['BIRTHDAY_SHE']
+birthday_he = os.environ['BIRTHDAY_HE']
 
 app_id = os.environ["APP_ID"]
 app_secret = os.environ["APP_SECRET"]
@@ -22,14 +26,17 @@ def get_weather():
   url = "http://autodev.openspeech.cn/csp/api/v2.1/weather?openId=aiuicus&clientType=android&sign=android&city=" + city
   res = requests.get(url).json()
   weather = res['data']['list'][0]
-  return weather['weather'], math.floor(weather['temp'])
+  return weather['weather'], math.floor(weather['high'], math.floor(weather['low'])
 
 def get_count():
   delta = today - datetime.strptime(start_date, "%Y-%m-%d")
   return delta.days
 
-def get_birthday():
-  next = datetime.strptime(str(date.today().year) + "-" + birthday, "%Y-%m-%d")
+def get_birthday(who):
+  if who:                        
+    next = datetime.strptime(str(date.today().year) + "-" + birthday_she, "%Y-%m-%d")
+  else:
+    next = datetime.strptime(str(date.today().year) + "-" + birthday_he, "%Y-%m-%d")
   if next < datetime.now():
     next = next.replace(year=next.year + 1)
   return (next - today).days
@@ -47,11 +54,10 @@ def get_random_color():
 client = WeChatClient(app_id, app_secret)
 
 wm = WeChatMessage(client)
-wea, temperature = get_weather()
+wea, high, low = get_weather()
 data = {
   "date": {
-    "value": today.strftime('%Y年%m月%d日'),
-    "color": get_random_color()
+    "value": today.strftime('%Y年%m月%d日')
   },
   "city": {
     "value": city
@@ -60,15 +66,22 @@ data = {
     "value":wea,
     "color": get_random_color()
   },
-  "temperature":{
-    "value":temperature,
+  "highest":{
+    "value":high,
+    "color": get_random_color()
+  },
+  "lowest":{
+    "value":low,
     "color": get_random_color()
   },
   "love_days":{
     "value":get_count()
   },
-  "birthday_left":{
-    "value":get_birthday()
+  "birthday_she":{
+    "value":get_birthday(she)
+  },
+  "birthday_he":{
+    "value":get_birthday(he)
   },
   "words":{
     "value":get_words(), 
