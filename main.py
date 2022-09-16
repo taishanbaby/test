@@ -72,7 +72,8 @@ data = {
     "color": get_random_color()
   },
   "love_days":{
-    "value":get_count()
+    "value":get_count(),
+    "color": get_random_color()
   },
   "birthday_she":{
     "value":get_birthday(True)
