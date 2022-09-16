@@ -1,13 +1,13 @@
 name: morning
 on:
   schedule:
-  - cron:  '0 0 * * *'
+  - cron:  '0 1 * * *'
   workflow_dispatch:
 
 jobs:
   send_message:
     runs-on: ubuntu-latest
-    name: send morning to your girlfriend
+    name: send morning to girlfriend
 
     steps:
     - name: checkout
@@ -28,5 +28,6 @@ jobs:
       TEMPLATE_ID: ${{ secrets.TEMPLATE_ID }}
       USER_ID: ${{ secrets.USER_ID }}
       START_DATE: ${{ secrets.START_DATE }}
-      BIRTHDAY: ${{ secrets.BIRTHDAY }}
+      BIRTHDAY_SHE: ${{ secrets.BIRTHDAY_SHE }}
+      BIRTHDAY_HE: ${{ secrets.BIRTHDAY_HE }}
       CITY: ${{ secrets.CITY }}
