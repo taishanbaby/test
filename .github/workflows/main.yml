@@ -16,11 +16,11 @@ jobs:
         ref: master
 
     - name: sender
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v3
       with:
         python-version: '3.x'
         architecture: 'x64'
-    - run: pip install -r ./requirements.txt && python ./main.py
+    - run: pip3 install -r ./requirements.txt && python3 ./main.py
 
     env:
       APP_ID: ${{ secrets.APP_ID }}
