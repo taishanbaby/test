@@ -21,7 +21,7 @@ user_id_2 = os.environ["USER_ID_2"]
 template_id = os.environ["TEMPLATE_ID"]
 
 
-def get_weather(city, province="四川"):
+def get_weather(city="成都", province="四川"):
     # 城市id    
     city_id = cityinfo.cityInfo[province][city]["AREAID"]  
     # city_id = 101280101
@@ -73,7 +73,7 @@ def get_random_color():
 client = WeChatClient(app_id, app_secret)
 
 wm = WeChatMessage(client)
-weather_, max_temperature, min_temperature = get_weather(city, province="四川")
+weather_, max_temperature, min_temperature = get_weather(city="成都", province="四川")
 data = {
   "date": {
     "value": today.strftime('%Y年%m月%d日')
